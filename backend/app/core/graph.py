@@ -213,7 +213,8 @@ def build_graph():
         critical_alerts = []
         if has_tumor:
             organ_name = img.get("organ", "Scan")
-            critical_alerts.append(f"Focal mass / lesion identified in {organ_name} (Volume Ratio: {img.get('tumor_volume_ratio', 0.0):.2%})")
+            vol_ratio = float(img.get("tumor_volume_ratio") or 0.0)
+            critical_alerts.append(f"Focal mass / lesion identified in {organ_name} (Volume Ratio: {vol_ratio:.2%})")
         critical_alerts.extend(sym.get("critical_findings", []))
         
         # Synthesize clinical summary

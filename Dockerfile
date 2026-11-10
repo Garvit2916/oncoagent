@@ -13,6 +13,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV PIP_NO_CACHE_DIR=1 \
     PIP_EXTRA_INDEX_URL=https://download.pytorch.org/whl/cpu
 
+# Memory footprint tuning for small-RAM hosts (no code changes)
+ENV MALLOC_ARENA_MAX=2 \
+    MALLOC_TRIM_THRESHOLD_=131072 \
+    MALLOC_MMAP_THRESHOLD_=131072 \
+    OMP_NUM_THREADS=1 \
+    OPENBLAS_NUM_THREADS=1 \
+    MKL_NUM_THREADS=1 \
+    NUMEXPR_NUM_THREADS=1
+
 # Python dependencies first for layer caching
 COPY backend/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt

@@ -45,6 +45,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+def _release_memory():
+    """Return freed heap pages to the OS (keeps small-RAM hosts stable after inference)."""
+    try:
+        import gc
+        import ctypes
+
+        gc.collect()
+        ctypes.CDLL("libc.so.6").malloc_trim(0)
+    except (OSError, AttributeError, ValueError):
+        pass
+
+
+@app.middleware("http")
+async def trim_memory_after_inference(request: Request, call_next):
+    """Heavy model inference fragments the heap; release it back after POST responses."""
+    response = await call_next(request)
+    if request.method == "POST" and request.url.path.startswith("/api/"):
+        _release_memory()
+    return response
+
 # Global instances
 agent_manager = AgentManager()
 rag_pipeline = RAGPipeline()

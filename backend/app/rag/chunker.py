@@ -44,7 +44,7 @@ def chunk_pubmed_papers(papers, chunk_size: int = 400) -> List[dict]:
         text = f"{paper.title} {paper.abstract}"
         text_chunks = chunk_text(text, chunk_size=chunk_size, overlap=100)
         
-        for i, chunk_text in enumerate(text_chunks):
+        for i, chunk in enumerate(text_chunks):
             chunks.append({
                 "pmid": paper.pmid,
                 "title": paper.title,
@@ -53,7 +53,7 @@ def chunk_pubmed_papers(papers, chunk_size: int = 400) -> List[dict]:
                 "pub_date": paper.pub_date,
                 "url": paper.url,
                 "chunk_index": i,
-                "text": chunk_text,
+                "text": chunk,
             })
     
     return chunks
