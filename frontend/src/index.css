@@ -1,0 +1,364 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ONCOAGENT DESIGN SYSTEM — deep-space medical glassmorphism
+   ============================================================ */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #05070d;
+    color: #cbd5e1;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(52, 211, 153, 0.35);
+    color: #ecfdf5;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #05070d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(52, 211, 153, 0.35), rgba(167, 139, 250, 0.35));
+    border-radius: 999px;
+    border: 2px solid #05070d;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-[#05070d] transition-all duration-300
+      bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400
+      shadow-[0_0_28px_-6px_rgba(52,211,153,0.6)]
+      hover:shadow-[0_0_44px_-6px_rgba(34,211,238,0.75)] hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-emerald-300/70 focus:ring-offset-2 focus:ring-offset-[#05070d]
+      disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-slate-200 transition-all duration-300
+      bg-white/[0.05] border border-white/10 backdrop-blur-md
+      hover:bg-white/[0.1] hover:border-white/20 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/20
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-300
+      bg-gradient-to-r from-rose-500 to-red-500 shadow-[0_0_28px_-6px_rgba(244,63,94,0.55)]
+      hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-rose-400/70 focus:ring-offset-2 focus:ring-offset-[#05070d];
+  }
+
+  .card {
+    @apply rounded-2xl p-6 border border-white/[0.07] bg-white/[0.04] backdrop-blur-xl shadow-glass transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply border-white/[0.14] bg-white/[0.06];
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-xl text-slate-100 placeholder-slate-500
+      bg-white/[0.05] border border-white/10 backdrop-blur-md transition-all duration-300
+      focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:border-emerald-400/40;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-slate-300 mb-1.5;
+  }
+
+  .glass-panel {
+    @apply rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-2xl shadow-glass;
+  }
+
+  .glass-chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-xs font-medium tracking-wide backdrop-blur-md;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300;
+  }
+
+  .kpi-tile {
+    @apply rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 text-center backdrop-blur-xl transition-colors duration-300;
+  }
+}
+
+/* ============================================================
+   Legacy light-theme pages -> deep-space compat layer.
+   Scoped under `.themed` so the new shell and new pages can opt
+   out and carry their own bespoke styling.
+   ============================================================ */
+/* surfaces */
+.themed .bg-white { background-color: rgba(255, 255, 255, 0.045); }
+.themed .bg-slate-50 { background-color: rgba(148, 163, 184, 0.07); }
+.themed .bg-slate-100 { background-color: rgba(148, 163, 184, 0.11); }
+.themed .bg-slate-200 { background-color: rgba(148, 163, 184, 0.17); }
+.themed .bg-slate-800 { background-color: rgba(15, 23, 42, 0.85); }
+.themed .bg-slate-900 { background-color: rgba(2, 6, 23, 0.9); }
+
+.themed .bg-primary-50 { background-color: rgba(52, 211, 153, 0.09); }
+.themed .bg-primary-100 { background-color: rgba(52, 211, 153, 0.13); }
+.themed .bg-primary-200 { background-color: rgba(52, 211, 153, 0.18); }
+.themed .bg-green-100 { background-color: rgba(34, 197, 94, 0.13); }
+.themed .bg-green-50 { background-color: rgba(34, 197, 94, 0.09); }
+.themed .bg-red-50 { background-color: rgba(244, 63, 94, 0.1); }
+.themed .bg-red-100 { background-color: rgba(244, 63, 94, 0.14); }
+.themed .bg-blue-50 { background-color: rgba(59, 130, 246, 0.1); }
+.themed .bg-blue-100 { background-color: rgba(59, 130, 246, 0.14); }
+.themed .bg-purple-50 { background-color: rgba(168, 85, 247, 0.1); }
+.themed .bg-purple-100 { background-color: rgba(168, 85, 247, 0.14); }
+.themed .bg-amber-50 { background-color: rgba(245, 158, 11, 0.1); }
+.themed .bg-amber-100 { background-color: rgba(245, 158, 11, 0.14); }
+
+/* text */
+.themed .text-slate-900, .themed .text-slate-950 { color: #f8fafc; }
+.themed .text-slate-800 { color: #e2e8f0; }
+.themed .text-slate-700 { color: #cbd5e1; }
+.themed .text-slate-600 { color: #a8b6c9; }
+.themed .text-slate-500 { color: #8b98ad; }
+.themed .text-slate-400 { color: #72819a; }
+
+.themed .text-primary-800 { color: #34d399; }
+.themed .text-primary-700 { color: #34d399; }
+.themed .text-primary-600 { color: #34d399; }
+.themed .text-primary-500 { color: #6ee7b7; }
+.themed .text-primary-400 { color: #a7f3d0; }
+
+.themed .text-green-700, .themed .text-green-600, .themed .text-green-500 { color: #34d399; }
+.themed .text-red-800, .themed .text-red-700, .themed .text-red-600, .themed .text-red-500 { color: #fb7185; }
+.themed .text-blue-800, .themed .text-blue-700, .themed .text-blue-600, .themed .text-blue-500 { color: #60a5fa; }
+.themed .text-purple-800, .themed .text-purple-700, .themed .text-purple-600, .themed .text-purple-500 { color: #a78bfa; }
+.themed .text-amber-800, .themed .text-amber-700, .themed .text-amber-600, .themed .text-amber-500 { color: #fbbf24; }
+
+/* borders */
+.themed .border-white { border-color: rgba(255, 255, 255, 0.12); }
+.themed .border-slate-50, .themed .border-slate-100, .themed .border-slate-200 { border-color: rgba(255, 255, 255, 0.09); }
+.themed .border-slate-300 { border-color: rgba(255, 255, 255, 0.15); }
+.themed .border-slate-400 { border-color: rgba(255, 255, 255, 0.22); }
+.themed .border-primary-100, .themed .border-primary-200 { border-color: rgba(52, 211, 153, 0.22); }
+.themed .border-primary-300 { border-color: rgba(52, 211, 153, 0.38); }
+
+.themed .divide-slate-200 > * + * { border-color: rgba(255, 255, 255, 0.09); }
+
+/* rings / shadows from the light theme */
+.themed .shadow-sm, .themed .shadow, .themed .shadow-md { box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.55); }
+
+.themed .hover\:shadow-lg:hover { box-shadow: 0 0 36px -10px rgba(52, 211, 153, 0.35); }
+.themed .hover\:bg-slate-50:hover { background-color: rgba(148, 163, 184, 0.1); }
+.themed .hover\:bg-slate-100:hover { background-color: rgba(148, 163, 184, 0.16); }
+.themed .hover\:bg-primary-50:hover { background-color: rgba(52, 211, 153, 0.12); }
+.themed .hover\:bg-white:hover { background-color: rgba(255, 255, 255, 0.08); }
+.themed .hover\:text-slate-900:hover, .themed .hover\:text-slate-700:hover, .themed .hover\:text-slate-800:hover { color: #f8fafc; }
+
+/* ============================================================
+   Ambient background helpers
+   ============================================================ */
+.neural-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gradient-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 15% 0%, rgba(16, 185, 129, 0.10), transparent 60%),
+    radial-gradient(50% 40% at 90% 10%, rgba(34, 211, 238, 0.08), transparent 60%),
+    radial-gradient(55% 45% at 50% 110%, rgba(139, 92, 246, 0.10), transparent 60%);
+}
+
+.mesh-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+.nav-blur {
+  background: rgba(5, 7, 13, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(70% 60% at 50% 30%, black, transparent);
+}
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 520px;
+  height: 520px;
+  margin-left: -260px;
+  margin-top: -260px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.09), rgba(34, 211, 238, 0.05), transparent 65%);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #34d399, #22d3ee, #a78bfa);
+}
+
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.shine:hover::after {
+  transform: translateX(120%);
+}
+
+.img-grid {
+  background-color: rgba(2, 6, 23, 0.6) !important;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ============================================================
+   Free open-source effects — Aceternity UI & Magic UI (MIT)
+   Ported as lightweight CSS/React utilities.
+   ============================================================ */
+
+/* Aurora background (Aceternity) — calm drifting light */
+.aurora-blob {
+  border-radius: 9999px;
+  filter: blur(72px);
+  will-change: transform;
+  animation: aurora-drift 22s ease-in-out infinite alternate;
+}
+.aurora-blob.slow {
+  animation-duration: 32s;
+  animation-delay: -8s;
+}
+.aurora-blob.reverse {
+  animation-duration: 27s;
+  animation-delay: -14s;
+  animation-direction: alternate-reverse;
+}
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(5%, 4%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-3%, 6%, 0) scale(0.98);
+  }
+}
+
+/* Shimmer text (Magic UI) — animated gradient sweep */
+.text-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 5.5s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% center;
+  }
+}
+
+/* Shine border (Magic UI) — rotating gradient ring around a card */
+.shine-border {
+  position: relative;
+}
+.shine-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    115deg,
+    transparent 25%,
+    rgba(52, 211, 153, 0.55) 45%,
+    rgba(103, 232, 249, 0.55) 50%,
+    rgba(167, 139, 250, 0.55) 55%,
+    transparent 75%
+  );
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: shine-border-turn 7s linear infinite;
+}
+@keyframes shine-border-turn {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 300% 0%;
+  }
+}
+
+/* Professional data metric tile */
+.metric-card {
+  @apply relative rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 backdrop-blur-xl overflow-hidden transition-colors duration-300;
+}
+.metric-card .metric-top {
+  @apply absolute left-0 right-0 top-0 h-[2px] rounded-t-2xl;
+}

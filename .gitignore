@@ -1,0 +1,30 @@
+# Data & training artifacts (regenerate via tools/)
+data/
+*.log
+*.err
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Environment / secrets
+.env
+frontend/.env
+frontend/.env.cloud
+
+# Databases & stray weights
+*.db
+yolo26n.pt
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

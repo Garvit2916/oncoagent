@@ -1,0 +1,27 @@
+# Never ship these into the Docker image / HF Space
+data/
+tools/
+frontend/node_modules/
+frontend/dist/
+frontend/src/
+frontend/index.html
+frontend/package.json
+frontend/package-lock.json
+frontend/vite.config.ts
+frontend/tailwind.config.js
+frontend/tsconfig*.json
+frontend/postcss.config.js
+.git/
+.gitignore
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.log
+*.err
+yolo26n.pt
+docker-compose.yml
+.env
+.env.example
+README.md
+*.db
